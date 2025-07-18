@@ -24,7 +24,6 @@ void newFoodList(FoodList* list) {
 }
 
 void addFood(FoodList* list) {
-
     Food newFood;
     int check;
     do {
@@ -32,7 +31,6 @@ void addFood(FoodList* list) {
         printf("Nhap ma mon an:");
         scanf("%d",&newFood.id);
         getchar();
-
 
         Node* temp=list->head;
         while (temp != NULL) {
@@ -54,7 +52,7 @@ void addFood(FoodList* list) {
     newFood.category[strcspn(newFood.category, "\n")] = '\0';
 
     printf("Nhap gia mon: ");
-    scanf("%f, &newFood.price");
+    scanf("%f", &newFood.price);
     getchar();
     newFood.isDiscontinued = 0;
     Node* newNode = (Node*)malloc(sizeof(Node));
@@ -85,7 +83,7 @@ void printFoodList(FoodList* list) {
     printf("Danh sach mon an:\n");
     while (current != NULL) {
         if (!current->foods.isDiscontinued) {
-            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %f\n",current->foods.id, current->foods.name, current->foods.category, current->foods.price);
+            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %.2f\n",current->foods.id, current->foods.name, current->foods.category, current->foods.price);
         }
         current = current->next;
     }
@@ -108,7 +106,7 @@ void updateFood(FoodList* list) {
             current->foods.category[strcspn(current->foods.category, "\n")] = '\0';
             getchar();
             printf("Nhap gia moi: ");
-            scanf("%f,&price");
+            scanf("%f",current->foods.price);
             getchar();
             printf("Da cap nhat thong tin mon an\n");
             return;
@@ -144,7 +142,7 @@ void printDiscontinuedFoods(FoodList* list) {
     printf("Danh sach mon an da ngung ban:\n");
     while (current != NULL) {
         if (current->foods.isDiscontinued) {
-            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %f\n",
+            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %.2f\n",
                    current->foods.id, current->foods.name, current->foods.category, current->foods.price);
             found = 1;
         }
@@ -170,7 +168,7 @@ void searchFood(FoodList* list) {
     printf("Ket qua tim kiem:\n");
     while (current != NULL) {
         if (strstr(current->foods.name, name) != NULL) {
-            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %f, Trang thai: %s\n",
+            printf("ID: %d, Ten mon an: %s, Danh muc: %s, Gia: %.f, Trang thai: %s\n",
                    current->foods.id, current->foods.name, current->foods.category, current->foods.price);
 
             if (current->foods.isDiscontinued) {
@@ -253,6 +251,7 @@ int main(void) {
                 break;
             case 7:
                 sortFoodList(&list);
+                printFoodList(&list);
                 break;
             case 8:
                 printf("Thoat chuong trinh\n");
